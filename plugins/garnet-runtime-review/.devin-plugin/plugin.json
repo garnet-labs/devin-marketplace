@@ -1,0 +1,26 @@
+{
+  "name": "garnet-runtime-review",
+  "displayName": "Garnet Runtime Review",
+  "description": "Record CI job connections and their execution chains, then retrieve runtime evidence when reviewing pull requests",
+  "shortDescription": "Runtime evidence for pull requests",
+  "setup": {
+    "notice": "Recording needs a supported Linux CI job. Public repository profiles need no login; private profiles require Garnet device authorization.",
+    "steps": [
+      "Install the Garnet GitHub App on the repositories where you want pull request comments.",
+      "Ask Devin to add Garnet Runtime Review to your repository's CI using the bundled install skill."
+    ]
+  },
+  "homepage": "https://www.garnet.ai",
+  "repository": "https://github.com/garnet-org/action",
+  "logo": "logo.svg",
+  "keywords": [
+    "Developer Tools",
+    "Security",
+    "CI"
+  ],
+  "mcpServers": {
+    "garnet": {
+      "url": "https://api.garnet.ai/api/v2/mcp"
+    }
+  }
+}
