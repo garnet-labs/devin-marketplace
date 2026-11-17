@@ -94,6 +94,7 @@
     "./plugins/fireflies",
     "./plugins/fullstory",
     "./plugins/gamma",
+    "./plugins/garnet-runtime-review",
     "./plugins/gc-ai",
     "./plugins/gitlab",
     "./plugins/godaddy",
