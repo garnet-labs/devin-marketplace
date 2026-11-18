@@ -25,6 +25,8 @@ request, updated in place for the recorded head.
   install. Never create, read, or paste a Garnet token. On fork pull requests,
   GitHub withholds OIDC and secrets: the action records locally and uploads a
   `garnet-run-*` artifact for the App to collect after the run.
+- Do not pass the action's `api_token` input: records sent with it are not
+  bound to the pull request head, so the App cannot compare them.
 - The pinned action is `v2.5.2` at
   `673a06d87748bec49e4d8df22d371b2a3420aba4`. Check the
   [releases](https://github.com/garnet-org/action/releases) before installing;
@@ -92,6 +94,8 @@ request, updated in place for the recorded head.
 
 ## Check the first record
 
+The first record on the new pull request is the test. When it is finalized,
+run the bundled `garnet-runtime-review-before-ready` skill on that pull request.
 Read the new workflow's run and the App comment. Report an unavailable App or
 record as an outstanding verification step; a passing workflow alone is not
 proof of recording. The first capture may have no base comparison until the

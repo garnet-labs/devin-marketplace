@@ -14,9 +14,8 @@
   "repository": "https://github.com/garnet-org/action",
   "logo": "logo.svg",
   "keywords": [
-    "Developer Tools",
     "Security",
-    "CI"
+    "Development Tools"
   ],
   "mcpServers": {
     "garnet": {
