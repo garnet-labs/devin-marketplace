@@ -5,7 +5,7 @@ description: Read the Runtime Review comment and its markers first; it is the ve
 
 # Garnet Runtime Review
 
-Garnet records what each CI job did at runtime: every outbound connection, the execution chain behind it (the process ancestry from the runner's root) and the GitHub step. The Garnet App posts the Runtime Review comment, which compares the PR's head with the PR base or the previous push it names. The Garnet MCP (`https://api.garnet.ai/api/v2/mcp`) serves the underlying job records.
+Garnet records what each CI job did at runtime: every outbound connection, the execution chain behind it (the process ancestry from the runner's root) and the GitHub step. The Garnet App posts the Runtime Review comment, which compares the PR's head with the PR base or the previous push it names. The Garnet MCP (`https://api.garnet.ai/api/v2/mcp`) serves the underlying job records. Clients may list it under a generated server name rather than `garnet`; use the server with this URL.
 
 ## When to use
 
