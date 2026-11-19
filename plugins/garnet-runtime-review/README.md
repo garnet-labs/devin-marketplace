@@ -8,12 +8,23 @@ Records are observations, not a verdict or an approval. Capture is best-effort.
 
 | Part | What it does |
 |---|---|
-| MCP server `garnet` | The hosted Garnet MCP at `https://api.garnet.ai/api/v2/mcp`. Its `profiles` tool returns per-job records for a workflow run. |
+| MCP server `garnet` | The hosted Garnet MCP at `https://api.garnet.ai/api/v2/mcp`. Its `profiles` tool returns per-job records for a workflow run. Devin may list it under a generated name such as `garnet-<suffix>`; the skills select it by URL. |
 | Skill `garnet-runtime-review-install` | Adds a recording workflow to a repository's GitHub Actions in one reviewable commit. |
 | Skill `garnet-runtime-review` | Reads the Runtime Review comment bound to the current head when reviewing a pull request, and the MCP records for job detail. |
 | Skill `garnet-runtime-review-before-ready` | For a pull request Devin authored: reads its own record before marking the pull request ready. |
 
-The plugin has no hooks. It does not record anything inside a Devin session; recording happens in CI.
+## Scope: the CI path only
+
+This plugin covers the CI path: recording in GitHub Actions, the App comment on the pull request, and Devin reading that record. It has no hooks and records nothing inside a Devin session. Garnet's in-session receipt, which records the agent's own commands before a pull request exists, is a separate plugin and does not install with this one.
+
+## How it fits into a Devin workflow
+
+1. **Install, once per repository.** Devin runs the install skill and opens one commit that adds `.github/workflows/garnet-record.yml`. The workflow runs `garnet-org/action`, pinned to a commit SHA, around the repository's own dependency install, authenticated by GitHub OIDC. Existing workflows are not changed and no Garnet secret is needed.
+2. **Record, on every push.** Each pull request push runs the recorded job. The Garnet GitHub App compares the head with the pull request base or the previous push and posts one Runtime Review comment, bound to the head SHA by hidden markers.
+3. **Author side.** Before Devin marks its own pull request ready, the before-ready skill reads the record for the current head and adds a section to the pull request body that accounts for each workload destination. If no finalized record is bound to the head, it says so and does not wait.
+4. **Reviewer side.** When Devin reviews a pull request, the review skill reads the same comment first, then calls `profiles` for job detail. It quotes changed destinations and their execution chains exactly, and reports pending, stale or incomplete records as unknown.
+
+The record is an observation for the reviewer. The plugin never approves or blocks a pull request; that stays with the reviewer and the repository's policy.
 
 ## Setup
 
