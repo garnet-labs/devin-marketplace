@@ -4,7 +4,7 @@
   "description": "Record CI job connections and their execution chains, then retrieve runtime evidence when reviewing pull requests",
   "shortDescription": "Runtime evidence for pull requests",
   "setup": {
-    "notice": "Recording needs a supported Linux CI job. Public repository profiles need no login; private profiles require Garnet device authorization.",
+    "notice": "Recording needs a supported Linux CI job. Public repository profiles need no login; private profiles use Garnet device authorization and may still be unreadable through the MCP, so the App comment remains the record.",
     "steps": [
       "Install the Garnet GitHub App on the repositories where you want pull request comments.",
       "Ask Devin to add Garnet Runtime Review to your repository's CI using the bundled install skill."
