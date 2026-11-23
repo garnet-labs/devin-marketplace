@@ -8,7 +8,7 @@ Records are observations, not a verdict or an approval. Capture is best-effort.
 
 | Part | What it does |
 |---|---|
-| MCP server `garnet` | The hosted Garnet MCP at `https://api.garnet.ai/api/v2/mcp`. Its `profiles` tool returns per-job records for a workflow run. Devin may list it under a generated name such as `garnet-<suffix>`; the skills select it by URL. |
+| MCP server `garnet` | The hosted Garnet MCP at `https://api.garnet.ai/api/v2/mcp`. `pr_review` previews the pull request's `result`; use it only when `status` is `finalized`, the record is bound to the current head, and capture quality is usable. `profiles` returns per-job records for a workflow run. Devin may list the server under a generated name such as `garnet-<suffix>`; the skills select it by URL. |
 | Skill `garnet-runtime-review-install` | Adds a recording workflow to a repository's GitHub Actions in one reviewable commit. |
 | Skill `garnet-runtime-review` | Reads the Runtime Review comment bound to the current head when reviewing a pull request, and the MCP records for job detail. |
 | Skill `garnet-runtime-review-before-ready` | For a pull request Devin authored: reads its own record before marking the pull request ready. |
